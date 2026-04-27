@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+# SCAN THAT FAILS
+    - name: Scan SBOM
+      uses: anchore/scan-action@v3
+      with:
+        output-format: table
+        sbom: "${{ github.event.repository.name }}-sbom.spdx.json"
