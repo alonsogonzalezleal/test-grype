@@ -17,7 +17,7 @@ jobs:
     - name: SBOM job
       uses: anchore/sbom-action@v0
       with:
-        path: dist/sategFrontend/browser
+        path: ./
         format: spdx-json
         output-file: "${{ github.event.repository.name }}-sbom.spdx.json"
 
